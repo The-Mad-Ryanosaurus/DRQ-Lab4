@@ -5,6 +5,7 @@ export class BookItems extends React.Component {
     render() {
         return (
             <div>
+                {/* this.props.book.x calls variables from the API and displays them */}
                 <Card>
                     <Card.Header><h3>{this.props.book.title}</h3></Card.Header>
                     <Card.Body>
