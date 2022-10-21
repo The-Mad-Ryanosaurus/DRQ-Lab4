@@ -1,45 +1,32 @@
 import React from "react";
+import axios from "axios";
 
 import { Books } from "./books";
 
 export class Read extends React.Component {
 
+    // Invoked when Component becomes visible
+    // Makes a HTTP Request with Axios
+    // Shows the Response from API (promise)
+    componentDidMount() {
+        
+        axios.get('https://jsonblob.com/api/jsonblob/1027219693823606784')
+        // Get HTTP Request and Update State
+        // => = function()
+        .then((response)=>{
+            this.setState({
+                // Response is whole HTTP response 
+                //.data is for the data we want from the arrays
+                books: response.data
+            })
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
+
     state = {
-        books: [
-            {
-                "title": "Learn Git in a Month of Lunches",
-                "isbn": "1617292419",
-                "pageCount": 0,
-                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/umali.jpg",
-                "status": "MEAP",
-                "authors": ["Rick Umali"],
-                "categories": []
-            },
-            {
-                "title": "MongoDB in Action, Second Edition",
-                "isbn": "1617291609",
-                "pageCount": 0,
-                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/banker2.jpg",
-                "status": "MEAP",
-                "authors": [
-                    "Kyle Banker",
-                    "Peter Bakkum",
-                    "Tim Hawkins",
-                    "Shaun Verch",
-                    "Douglas Garrett"
-                ],
-                "categories": []
-            },
-            {
-                "title": "Getting MEAN with Mongo, Express, Angular, and Node",
-                "isbn": "1617292036",
-                "pageCount": 0,
-                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/sholmes.jpg",
-                "status": "MEAP",
-                "authors": ["Simon Holmes"],
-                "categories": []
-            }
-        ]
+        books: [ ]
     }
     render() {
         return (
